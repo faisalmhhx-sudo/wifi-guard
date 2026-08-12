@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>ar</string>
+	<key>CFBundleDisplayName</key>
+	<string>حارس الواي فاي</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleName</key>
+	<string>wifi_guard</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(FLUTTER_BUILD_NAME)</string>
+	<key>CFBundleVersion</key>
+	<string>$(FLUTTER_BUILD_NUMBER)</string>
+
+	<!-- دعم اللغة العربية والاتجاه من اليمين لليسار -->
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>ar</string>
+		<string>en</string>
+	</array>
+
+	<!-- صلاحية الموقع مطلوبة لقراءة معلومات الواي فاي (SSID) على iOS -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>نحتاج صلاحية الموقع لعرض اسم شبكة الواي فاي المتصل بها وتحليل الشبكات المجاورة.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>نحتاج صلاحية الموقع لمراقبة الشبكة في الخلفية والتنبيه عند دخول أجهزة جديدة.</string>
+
+	<!-- مطلوبة لاكتشاف الأجهزة عبر البث المحلي (Bonjour/mDNS) -->
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>نحتاج صلاحية الشبكة المحلية لاكتشاف الأجهزة المتصلة بشبكتك.</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_http._tcp</string>
+		<string>_airplay._tcp</string>
+		<string>_raop._tcp</string>
+		<string>_googlecast._tcp</string>
+		<string>_ipp._tcp</string>
+	</array>
+
+	<!-- الوصول لمعلومات الواي فاي -->
+	<key>com.apple.developer.networking.wifi-info</key>
+	<true/>
+
+	<!-- السماح باتصال http لصفحة الراوتر -->
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
+
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+</dict>
+</plist>
