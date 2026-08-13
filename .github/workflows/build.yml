@@ -11,16 +11,18 @@ jobs:
       - name: unzip
         run: |
           zip=$(ls *.zip | head -1)
-          echo "Found: $zip"
           unzip -o "$zip" -d _extracted
           echo "PROJ=$(dirname $(find _extracted -name pubspec.yaml | head -1))" >> $GITHUB_ENV
       - uses: actions/setup-java@v4
         with: { distribution: 'zulu', java-version: '17' }
       - uses: subosito/flutter-action@v2
-        with: { channel: 'stable' }
+        with:
+          flutter-version: '3.19.6'
+          channel: 'stable'
       - name: build
         working-directory: ${{ env.PROJ }}
         run: |
+          sed -i '/network_tools:/d;/connectivity_plus:/d;/path_provider:/d;/fl_chart:/d;/intl:/d' pubspec.yaml
           flutter create . --platforms=android --project-name wifi_guard --org com.faisal
           flutter pub get
           flutter build apk --release
