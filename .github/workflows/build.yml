@@ -1,0 +1,28 @@
+name: build-apk
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: unzip
+        run: |
+          unzip -o wifi_guard.zip -d _extracted
+          echo "PROJ=$(dirname $(find _extracted -name pubspec.yaml | head -1))" >> $GITHUB_ENV
+      - uses: actions/setup-java@v4
+        with: { distribution: 'zulu', java-version: '17' }
+      - uses: subosito/flutter-action@v2
+        with: { channel: 'stable' }
+      - name: build
+        working-directory: ${{ env.PROJ }}
+        run: |
+          flutter create . --platforms=android --project-name wifi_guard --org com.faisal
+          flutter pub get
+          flutter build apk --release
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wifi-guard-apk
+          path: ${{ env.PROJ }}/build/app/outputs/flutter-apk/app-release.apk
