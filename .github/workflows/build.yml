@@ -10,7 +10,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: unzip
         run: |
-          unzip -o wifi_guard.zip -d _extracted
+          zip=$(ls *.zip | head -1)
+          echo "Found: $zip"
+          unzip -o "$zip" -d _extracted
           echo "PROJ=$(dirname $(find _extracted -name pubspec.yaml | head -1))" >> $GITHUB_ENV
       - uses: actions/setup-java@v4
         with: { distribution: 'zulu', java-version: '17' }
